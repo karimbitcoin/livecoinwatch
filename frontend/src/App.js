@@ -1,51 +1,49 @@
-import { useEffect } from "react";
-import "./App.css";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import "./App.css";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import HomePage from "./pages/HomePage";
+import CoinPage from "./pages/CoinPage";
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
+import { marketData, topCoins, priceDatas } from "./data/mockData";
+
+function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    // Apply dark mode to body
+    if (!isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
     }
   };
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
-
-function App() {
-  return (
-    <div className="App">
+    <div className={`App ${isDarkMode ? 'dark' : ''}`}>
       <BrowserRouter>
+        <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route 
+            path="/" 
+            element={
+              <HomePage 
+                marketData={marketData}
+                topCoins={topCoins}
+                btcPriceData={priceDatas.bitcoin}
+              />
+            } 
+          />
+          <Route 
+            path="/coins/:coinId" 
+            element={<CoinPage coins={topCoins} allPriceData={priceDatas} />} 
+          />
+          <Route path="*" element={<HomePage marketData={marketData} topCoins={topCoins} btcPriceData={priceDatas.bitcoin} />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

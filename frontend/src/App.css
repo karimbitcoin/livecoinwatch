@@ -1,38 +1,227 @@
-.App {
-    text-align: center;
+/* Light Mode (default) */
+body {
+  --bg-color: #f8fafc;
+  --text-color: #334155;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --primary-color: #47c2be;
+  --positive-color: #22c55e;
+  --negative-color: #ef4444;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Dark Mode */
+body.dark-mode {
+  --bg-color: #0f172a;
+  --text-color: #e2e8f0;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --primary-color: #47c2be;
+  --positive-color: #22c55e;
+  --negative-color: #ef4444;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.dark .bg-white {
+  background-color: var(--card-bg);
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.dark .bg-gray-50 {
+  background-color: #283548;
 }
 
-.App-link {
-    color: #61dafb;
+.dark .text-gray-900 {
+  color: #f1f5f9;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.dark .text-gray-800 {
+  color: #e2e8f0;
+}
+
+.dark .text-gray-700 {
+  color: #cbd5e1;
+}
+
+.dark .text-gray-600 {
+  color: #cbd5e1;
+}
+
+.dark .text-gray-500 {
+  color: #94a3b8;
+}
+
+.dark .text-gray-400 {
+  color: #94a3b8;
+}
+
+.dark .border-gray-200 {
+  border-color: #334155;
+}
+
+.dark .border-gray-100 {
+  border-color: #334155;
+}
+
+.dark .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.dark .hover\:bg-gray-50:hover {
+  background-color: #1e293b;
+}
+
+.dark .hover\:bg-gray-100:hover {
+  background-color: #1e293b;
+}
+
+.dark .hover\:text-gray-500:hover {
+  color: #e2e8f0;
+}
+
+.dark .hover\:text-gray-700:hover {
+  color: #f1f5f9;
+}
+
+.dark .bg-gray-200 {
+  background-color: #334155;
+}
+
+.dark .hover\:bg-gray-300:hover {
+  background-color: #475569;
+}
+
+/* Transitions */
+.App * {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp 0.5s ease-out;
+}
+
+/* Price changes */
+.price-up {
+  color: var(--positive-color);
+}
+
+.price-down {
+  color: var(--negative-color);
+}
+
+/* Chart styles */
+.recharts-responsive-container {
+  transition: height 0.3s ease;
+}
+
+.recharts-surface {
+  overflow: visible;
+}
+
+/* Table hover effects */
+.crypto-table tbody tr:hover {
+  background-color: rgba(71, 194, 190, 0.05);
+}
+
+/* Content row animations */
+.content-row {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animation for table rows */
+.crypto-table tbody tr:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.crypto-table tbody tr:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.crypto-table tbody tr:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.crypto-table tbody tr:nth-child(4) {
+  animation-delay: 0.25s;
+}
+.crypto-table tbody tr:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.crypto-table tbody tr:nth-child(6) {
+  animation-delay: 0.35s;
+}
+.crypto-table tbody tr:nth-child(7) {
+  animation-delay: 0.4s;
+}
+.crypto-table tbody tr:nth-child(8) {
+  animation-delay: 0.45s;
+}
+.crypto-table tbody tr:nth-child(9) {
+  animation-delay: 0.5s;
+}
+.crypto-table tbody tr:nth-child(10) {
+  animation-delay: 0.55s;
 }
