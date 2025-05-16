@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import CoinPage from "./pages/CoinPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 import { marketData, topCoins, priceDatas } from "./data/mockData";
 
@@ -41,7 +42,7 @@ function App() {
             path="/coins/:coinId" 
             element={<CoinPage coins={topCoins} allPriceData={priceDatas} />} 
           />
-          <Route path="*" element={<HomePage marketData={marketData} topCoins={topCoins} btcPriceData={priceDatas.bitcoin} />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
