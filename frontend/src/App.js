@@ -7,6 +7,10 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import CoinPage from "./pages/CoinPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ExchangesPage from "./pages/ExchangesPage";
+import PortfolioPage from "./pages/PortfolioPage";
+import NewsPage from "./pages/NewsPage";
+import { LoginPage, RegisterPage, ForgotPasswordPage } from "./pages/AuthPages";
 
 import { marketData, topCoins, priceDatas } from "./data/mockData";
 
@@ -26,25 +30,55 @@ function App() {
   return (
     <div className={`App ${isDarkMode ? 'dark' : ''}`}>
       <BrowserRouter>
-        <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
         <Routes>
           <Route 
-            path="/" 
-            element={
-              <HomePage 
-                marketData={marketData}
-                topCoins={topCoins}
-                btcPriceData={priceDatas.bitcoin}
-              />
-            } 
+            path="/login" 
+            element={<LoginPage />} 
           />
           <Route 
-            path="/coins/:coinId" 
-            element={<CoinPage coins={topCoins} allPriceData={priceDatas} />} 
+            path="/register" 
+            element={<RegisterPage />} 
           />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route 
+            path="/forgot-password" 
+            element={<ForgotPasswordPage />} 
+          />
+          <Route path="*" element={
+            <>
+              <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+              <Routes>
+                <Route 
+                  path="/" 
+                  element={
+                    <HomePage 
+                      marketData={marketData}
+                      topCoins={topCoins}
+                      btcPriceData={priceDatas.bitcoin}
+                    />
+                  } 
+                />
+                <Route 
+                  path="/coins/:coinId" 
+                  element={<CoinPage coins={topCoins} allPriceData={priceDatas} />} 
+                />
+                <Route 
+                  path="/exchanges" 
+                  element={<ExchangesPage />} 
+                />
+                <Route 
+                  path="/portfolio" 
+                  element={<PortfolioPage />} 
+                />
+                <Route 
+                  path="/news" 
+                  element={<NewsPage />} 
+                />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+              <Footer />
+            </>
+          } />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </div>
   );
