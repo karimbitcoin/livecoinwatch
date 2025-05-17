@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiMenu, FiX, FiMoon, FiSun, FiSearch } from 'react-icons/fi';
+import { FiMenu, FiX, FiMoon, FiSun, FiSearch, FiUser } from 'react-icons/fi';
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,18 +23,12 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               <span className="text-primary font-bold text-xl mr-1">Live</span>
               <span className="font-bold text-xl">CoinWatch</span>
             </Link>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-4">
               <Link
                 to="/"
                 className="border-primary text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
                 Home
-              </Link>
-              <Link
-                to="/coins"
-                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Coins
               </Link>
               <Link
                 to="/exchanges"
@@ -47,6 +41,12 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                 className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
                 Portfolio
+              </Link>
+              <Link
+                to="/news"
+                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                News
               </Link>
             </div>
           </div>
@@ -73,7 +73,10 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                 <FiMoon className="h-6 w-6" />
               )}
             </button>
-            <button className="ml-4 btn-primary">Sign In</button>
+            <Link to="/login" className="ml-4 btn-primary flex items-center">
+              <FiUser className="mr-2" />
+              Sign In
+            </Link>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
             <button
@@ -101,12 +104,6 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               Home
             </Link>
             <Link
-              to="/coins"
-              className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block pl-3 pr-4 py-2 text-base font-medium"
-            >
-              Coins
-            </Link>
-            <Link
               to="/exchanges"
               className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block pl-3 pr-4 py-2 text-base font-medium"
             >
@@ -117,6 +114,12 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
               className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block pl-3 pr-4 py-2 text-base font-medium"
             >
               Portfolio
+            </Link>
+            <Link
+              to="/news"
+              className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 block pl-3 pr-4 py-2 text-base font-medium"
+            >
+              News
             </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
@@ -151,9 +154,10 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
                   </>
                 )}
               </button>
-              <button className="w-full text-left block px-4 py-2 text-base font-medium text-white bg-primary hover:bg-primary-dark">
-                Sign In
-              </button>
+              <Link to="/login" className="flex items-center w-full text-left block px-4 py-2 text-base font-medium text-white bg-primary hover:bg-primary-dark">
+                <FiUser className="mr-3 h-6 w-6" />
+                <span>Sign In</span>
+              </Link>
             </div>
           </div>
         </div>
